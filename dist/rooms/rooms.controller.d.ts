@@ -1,3 +1,4 @@
+/// <reference types="multer" />
 import { CreateRoomDto } from './dtos/CreateRoom.dto';
 import { Request } from 'express';
 import { RoomsService } from './rooms.service';

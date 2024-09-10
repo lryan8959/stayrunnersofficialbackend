@@ -27,7 +27,7 @@ export class RoomsService {
       .exec();
 
     if (!room) {
-      return 'Room not found';
+      return 'Product not found';
     }
 
     if (filenames?.length > 0) {

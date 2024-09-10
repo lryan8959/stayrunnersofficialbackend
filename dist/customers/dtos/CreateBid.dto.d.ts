@@ -2,9 +2,7 @@ export declare class CreateBidDto {
     name: string;
     email: string;
     city: string;
-    beds: number;
-    people: number;
-    nights: number;
+    delivery_address:string;
     price_willing_to_pay: number;
-    special_instructions: string;
+    special_instructions: string;ß
 }

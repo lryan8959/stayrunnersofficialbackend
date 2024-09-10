@@ -16,19 +16,20 @@ export class CreateBidDto {
     @IsNotEmpty()
     city: string;
 
+    @IsString()
     @IsNotEmpty()
-    beds: number;
+    delivery_address: string;
+    
 
-    @IsNotEmpty()
-    people: number;
-
-    @IsNotEmpty()
-    nights: number;
-
+    @IsNumber()
     @IsNotEmpty()
     price_willing_to_pay: number;
 
-    @IsNotEmpty()
     @IsString()
+    @IsNotEmpty()
     special_instructions: string;
+
+    @IsString()
+    @IsNotEmpty()
+    payment_type: string;
 }

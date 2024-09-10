@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.generatePassword = generatePassword;
+exports.generatePassword = void 0;
 function generatePassword() {
     const charset = 'ABCDEFGHJKMNOPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz0123456789@#%&';
     let password = '';
@@ -10,4 +10,5 @@ function generatePassword() {
     }
     return password;
 }
+exports.generatePassword = generatePassword;
 //# sourceMappingURL=generatePassword.js.map

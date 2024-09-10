@@ -1,24 +1,34 @@
-import { IsNotEmpty, IsString } from "class-validator";
+import { IsNotEmpty, IsString, IsNumber } from "class-validator";
 
 export class CreateRoomDto {
     localhost: string;
 
-    pic_urls: string[];
+    @IsNotEmpty()
+    pic: string[];
 
+
+    pic_urls: string[]; // Assuming 'Pic' refers to an array of picture URLs
+
+    
     @IsNotEmpty()
     @IsString()
-    description: string;
+    product_description: string;
 
     @IsNotEmpty()
     @IsString()
     payment_option: string;
 
     @IsNotEmpty()
-    min_price_per_night: number;
+    @IsNumber()
+    min_price: number;
 
     @IsNotEmpty()
     @IsString()
     city: string;
+
+    @IsNotEmpty()
+    @IsString()
+    product_size: string;
 
     @IsNotEmpty()
     @IsString()

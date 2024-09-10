@@ -4,8 +4,6 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseOmModule } from './mongoose.om/mongoose.om.module';
-import { CacheRedisModule } from './cache.redis/cache.redis.module';
-import { RedisModule } from './redis/redis.module';
 import { CountriesModule } from './countries/countries.module';
 import { CitiesModule } from './cities/cities.module';
 import { LocalhostsModule } from './localhosts/localhosts.module';
@@ -45,7 +43,7 @@ import { chatResponseModule } from './chatResponse/chatResonse.module';
     MailerModule.forRoot({
       transport: {
         host: process.env.SMTP_HOST,
-        port: process.env.SMTP_PORT,
+        port: parseInt(process.env.SMTP_PORT, 10),
         secure: false, // Set to true if using TLS/SSL
         auth: {
           user: process.env.SMTP_USER,

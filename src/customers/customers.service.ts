@@ -49,15 +49,19 @@ export class CustomersService {
       CustomerName = customer.name;
     }
 
-    const { beds, people, nights, price_willing_to_pay, special_instructions } =
-      createBidDto;
-    const createdBid = new this.bidModel({
-      customer: _id,
-      beds,
-      people,
-      nights,
+    const {
+      delivery_address,
       price_willing_to_pay,
       special_instructions,
+      payment_type,
+    } = createBidDto;
+
+    const createdBid = new this.bidModel({
+      customer: _id,
+      delivery_address,
+      price_willing_to_pay,
+      special_instructions,
+      payment_type,
     });
     const savedBid = await createdBid.save();
 
@@ -79,29 +83,29 @@ export class CustomersService {
       const emailsPromises = localhosts.map((localhost) =>
         this.emailService.sendEmail(
           localhost.email,
-          'A New Room Request - Last Minute Booking',
+          'New Delivery Request - Last Minute Booking',
           `
             <!DOCTYPE html>
             <html lang="en">
             <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>New Room Request</title>
+                <title>New Delivery Request</title>
             </head>
             <body>
                 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-                    <h2>A New Room Request</h2>
+                    <h2>New Delivery Request</h2>
                     <p>Hello,</p>
-                    <p>A new room request has been received:</p>
+                    <p>A new delivery request has been received:</p>
                     <ul>
                         <li><strong>Name:</strong> ${CustomerName}</li>
                         <li><strong>City:</strong> ${findCity.city_name}</li>
-                        <li><strong>Beds:</strong> ${beds}</li>
-                        <li><strong>People:</strong> ${people}</li>
-                        <li><strong>Nights:</strong> ${nights}</li>
+                        <li><strong>Delivery Address:</strong> ${delivery_address}</li>
                         <li><strong>Special Instructions:</strong> ${special_instructions}</li>
+                        <li><strong>Total Bid Price:</strong> $${price_willing_to_pay}</li>
+                        <li><strong>Payment Type:</strong> ${payment_type}</li>
                     </ul>
-                    <a href="https://m59media.com/negotiate?id=${savedBid._id}" style="display: inline-block; padding: 10px 20px; background-color: #007bff; color: #ffffff; text-decoration: none;">Negotiate Room Stay</a>
+                    <a href="https://m59media.com/negotiate?id=${savedBid._id}" style="display: inline-block; padding: 10px 20px; background-color: #007bff; color: #ffffff; text-decoration: none;">Negotiate Delivery</a>
                     <p>If you have any questions or concerns, please contact us.</p>
                     <p>Thank you!</p>
                 </div>
@@ -128,7 +132,7 @@ export class CustomersService {
                 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
                     <h2>Confirmation</h2>
                     <p>Thank you,</p>
-                    <p>This email confirms that you will receive an email if a room is available.</p>
+                    <p>Your delivery request has been received. You will be notified via email if a runner accepts your request.</p>
                 </div>
             </body>
             </html>
